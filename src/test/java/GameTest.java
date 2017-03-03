@@ -48,4 +48,9 @@ public class GameTest {
 
         verify(board).makeMove("O");
     }
+
+    @Test
+    public void shouldContinueUntilBoardIsFull() {
+
+    }
 }

@@ -10,11 +10,12 @@ import java.util.Arrays;
 public class Board {
     private final PrintStream out;
     private BufferedReader in;
-    private ArrayList<String> fields = new ArrayList<>(Arrays.asList("1","2","3","4","5","6","7","8","9"));
+    private ArrayList<String> fields;
 
-    public Board(PrintStream printStream, BufferedReader in) {
+    public Board(PrintStream printStream, BufferedReader in, ArrayList fields) {
         this.out = printStream;
         this.in = in;
+        this.fields = fields;
     }
 
     public void drawBoard() {
@@ -47,5 +48,16 @@ public class Board {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isFull() {
+        ArrayList<String> originalFields = new ArrayList<>(Arrays.asList("1","2","3","4","5","6","7","8","9"));
+
+        for(String field : fields) {
+            if(originalFields.contains(field)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
