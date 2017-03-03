@@ -15,16 +15,17 @@ public class GameTest {
 
     private Board board;
     private BufferedReader in;
+    private Game game;
 
     @Before
     public void setUp() throws Exception {
         board = mock(Board.class);
         in = mock(BufferedReader.class);
+        game = new Game(in, board);
     }
 
     @Test
     public void shouldTellBoardToPrintBoardWhenStarting() {
-        Game game = new Game(in, board);
 
         game.start();
 
@@ -34,10 +35,19 @@ public class GameTest {
     @Test
     public void shouldPromptUserForInput() throws IOException {
         when(in.readLine()).thenReturn("1");
-        Game game = new Game(in, board);
 
         game.makeMove();
 
         verify(in).readLine();
+    }
+
+    @Test
+    public void shouldTellBoardNewMoveWasMadeWhenUserMakesMove() throws IOException {
+        String input = "1";
+        when(in.readLine()).thenReturn(input);
+
+        game.makeMove();
+
+        verify(board).makeMove(input);
     }
 }
