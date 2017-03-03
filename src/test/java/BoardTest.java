@@ -105,7 +105,7 @@ public class BoardTest {
 
     @Test
     public void shouldDetectWhenRowHasBeenWon() {
-        ArrayList<String> horizontalWinState = new ArrayList<>(Arrays.asList("X","X","X","O","O","X","X","O","O"));
+        ArrayList<String> horizontalWinState = new ArrayList<>(Arrays.asList("O","O","X","X","X","X","O","X","O"));
         Board horizontalWinBoard = new Board(printStream, in, horizontalWinState);
 
         boolean isWon = horizontalWinBoard.isWon();
@@ -115,7 +115,7 @@ public class BoardTest {
 
     @Test
     public void shouldDisplayWhoWonTheGame() {
-        ArrayList<String> horizontalWinState = new ArrayList<>(Arrays.asList("X","X","X","O","O","X","X","O","O"));
+        ArrayList<String> horizontalWinState = new ArrayList<>(Arrays.asList("O","O","X","X","X","X","O","X","O"));
         Board horizontalWinBoard = new Board(printStream, in, horizontalWinState);
 
         horizontalWinBoard.announceFinished("X");

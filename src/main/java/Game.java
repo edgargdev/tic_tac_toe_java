@@ -16,7 +16,7 @@ public class Game {
     public void beginTurns() {
         int turn = 1;
         String token = "";
-        while(!board.isFull() && turn < 12) {
+        while((!board.isWon() && !board.isFull() ) && turn < 12) {
             if (turn % 2 == 0) {
                 token = "0";
             } else {

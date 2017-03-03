@@ -70,8 +70,8 @@ public class Board {
     }
 
     public boolean isWon() {
-        for( int i = 0; i < fields.size(); i += 3) {
-            if( fields.get(i) == fields.get(i + 1) && fields.get(i + 1) == fields.get(i + 2)); {
+        for( int i = 0; i < fields.size(); i = i + 3) {
+            if(fields.get(i).equals(fields.get(i + 1)) && fields.get(i + 1).equals(fields.get(i + 2))) {
                 return true;
             }
         }
