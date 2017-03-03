@@ -5,11 +5,9 @@ import java.io.IOException;
  * Created by egonzale on 3/3/17.
  */
 public class Game {
-    private final BufferedReader in;
     private final Board board;
 
-    public Game(BufferedReader in, Board board) {
-        this.in = in;
+    public Game(Board board) {
         this.board = board;
     }
 
@@ -19,13 +17,7 @@ public class Game {
     }
 
     public void beginTurns() {
-        try {
-            String input = in.readLine();
-            board.makeMove(input);
-            input = in.readLine();
-            board.makeMove(input);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        board.makeMove("X");
+        board.makeMove("O");
     }
 }

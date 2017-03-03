@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,10 +9,12 @@ import java.util.Arrays;
  */
 public class Board {
     private final PrintStream out;
+    private BufferedReader in;
     private ArrayList<String> fields = new ArrayList<>(Arrays.asList("1","2","3","4","5","6","7","8","9"));
 
-    public Board(PrintStream printStream) {
+    public Board(PrintStream printStream, BufferedReader in) {
         this.out = printStream;
+        this.in = in;
     }
 
     public void drawBoard() {
@@ -26,11 +30,22 @@ public class Board {
             out.println(str);
     }
 
-    public void makeMove(String input) {
-        int choice = Integer.parseInt(input) - 1;
-        if (choice < 9 && choice >= 0) {
-            fields.set(choice, "X");
+    public void makeMove(String token) {
+        try {
+            boolean validPosition = false;
+            while (!validPosition) {
+                String input = in.readLine();
+                int choice = Integer.parseInt(input) - 1;
+                boolean validInput = choice < 9 && choice >= 0;
+                validPosition = fields.contains(input);
+
+                if (validInput && validPosition) {
+                    fields.set(choice, token);
+                }
+                drawBoard();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        drawBoard();
     }
 }

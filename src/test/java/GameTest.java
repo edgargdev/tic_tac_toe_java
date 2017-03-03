@@ -19,7 +19,7 @@ public class GameTest {
     public void setUp() throws Exception {
         board = mock(Board.class);
         in = mock(BufferedReader.class);
-        game = new Game(in, board);
+        game = new Game(board);
     }
 
     @Test
@@ -31,22 +31,13 @@ public class GameTest {
     }
 
     @Test
-    public void shouldPromptUserForInput() throws IOException {
-        when(in.readLine()).thenReturn("1");
-
-        game.beginTurns();
-
-        verify(in).readLine();
-    }
-
-    @Test
     public void shouldTellBoardNewMoveWasMadeWhenUserMakesMove() throws IOException {
         String input = "1";
         when(in.readLine()).thenReturn(input);
 
         game.beginTurns();
 
-        verify(board).makeMove(input);
+        verify(board).makeMove("O");
     }
 
     @Test
@@ -55,6 +46,6 @@ public class GameTest {
 
         game.beginTurns();
 
-        verify(board).makeMove("3");
+        verify(board).makeMove("O");
     }
 }
