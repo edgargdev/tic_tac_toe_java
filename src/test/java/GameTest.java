@@ -3,6 +3,9 @@ import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.mockito.Mockito.*;
 
@@ -37,7 +40,7 @@ public class GameTest {
 
         game.beginTurns();
 
-        verify(board).makeMove("O");
+        verify(board, atLeast(1)).makeMove("X");
     }
 
     @Test
@@ -46,11 +49,19 @@ public class GameTest {
 
         game.beginTurns();
 
-        verify(board).makeMove("O");
+        verify(board, atLeast(1)).makeMove("X");
     }
 
     @Test
-    public void shouldContinueUntilBoardIsFull() {
+    public void shouldContinueUntilBoardIsFull() throws IOException {
+        PrintStream out = mock(PrintStream.class);
+        ArrayList<String> fields = new ArrayList<>(Arrays.asList("X","X","X","X","X","X","X","X","X"));
+        Board almostFullBoard = new Board(out, in, fields);
+        Game finished = new Game(almostFullBoard);
 
+        finished.beginTurns();
+
+        verify(board, times(0)).makeMove("X");
     }
+
 }

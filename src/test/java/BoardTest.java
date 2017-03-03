@@ -76,11 +76,30 @@ public class BoardTest {
     @Test
     public void shouldKnowBoardIsFilled() {
         ArrayList<String> filledStated = new ArrayList<>(Arrays.asList("X","X","X","X","X","X","X","X","X"));
-
         Board filledBoard = new Board(printStream, in, filledStated);
 
         boolean full = filledBoard.isFull();
 
         assertThat(full, is(true));
+    }
+
+    @Test
+    public void shouldKnowWhenBoardIsNotFull() {
+        ArrayList<String> notFullState = new ArrayList<>(Arrays.asList("X","X","X","X","X","X","X","X","9"));
+        Board unfilledBoard = new Board(printStream, in, notFullState);
+
+        boolean notFull = unfilledBoard.isFull();
+
+        assertThat(notFull, is(false));
+    }
+
+    @Test
+    public void shouldDisplayGameIsDrawWhenBoardIsInDrawState() {
+        ArrayList<String> drawState = new ArrayList<>(Arrays.asList("X","O","X","O","O","X","X","X","O"));
+        Board drawBoard = new Board(printStream, in, drawState);
+
+        drawBoard.annouceFinished();
+
+        verify(printStream).println("Game is draw");
     }
 }

@@ -60,4 +60,8 @@ public class Board {
         }
         return true;
     }
+
+    public void annouceFinished() {
+        out.println("Game is draw");
+    }
 }

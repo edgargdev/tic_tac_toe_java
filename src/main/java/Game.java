@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-
 /**
  * Created by egonzale on 3/3/17.
  */
@@ -17,7 +14,17 @@ public class Game {
     }
 
     public void beginTurns() {
-        board.makeMove("X");
-        board.makeMove("O");
+        int turn = 1;
+        String token;
+        while(!board.isFull() && turn < 12) { 
+            if (turn % 2 == 0) {
+                token = "0";
+            } else {
+                token = "X";
+            }
+            turn++;
+            board.makeMove(token);
+        }
+        board.annouceFinished();
     }
 }
