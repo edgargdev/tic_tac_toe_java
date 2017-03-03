@@ -15,12 +15,14 @@ public class Game {
 
     public void start() {
         board.drawBoard();
-        makeMove();
+        beginTurns();
     }
 
-    public void makeMove() {
+    public void beginTurns() {
         try {
             String input = in.readLine();
+            board.makeMove(input);
+            input = in.readLine();
             board.makeMove(input);
         } catch (IOException e) {
             e.printStackTrace();
