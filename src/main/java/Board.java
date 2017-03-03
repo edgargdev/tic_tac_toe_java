@@ -61,7 +61,20 @@ public class Board {
         return true;
     }
 
-    public void annouceFinished() {
-        out.println("Game is draw");
+    public void announceFinished(String token) {
+        if(isWon()) {
+            out.println("Player <" + token + "> Wins!");
+        } else {
+            out.println("Game is draw");
+        }
+    }
+
+    public boolean isWon() {
+        for( int i = 0; i < fields.size(); i += 3) {
+            if( fields.get(i) == fields.get(i + 1) && fields.get(i + 1) == fields.get(i + 2)); {
+                return true;
+            }
+        }
+        return false;
     }
 }

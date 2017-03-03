@@ -15,8 +15,8 @@ public class Game {
 
     public void beginTurns() {
         int turn = 1;
-        String token;
-        while(!board.isFull() && turn < 12) { 
+        String token = "";
+        while(!board.isFull() && turn < 12) {
             if (turn % 2 == 0) {
                 token = "0";
             } else {
@@ -25,6 +25,6 @@ public class Game {
             turn++;
             board.makeMove(token);
         }
-        board.annouceFinished();
+        board.announceFinished(token);
     }
 }

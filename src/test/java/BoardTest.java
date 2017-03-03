@@ -98,8 +98,29 @@ public class BoardTest {
         ArrayList<String> drawState = new ArrayList<>(Arrays.asList("X","O","X","O","O","X","X","X","O"));
         Board drawBoard = new Board(printStream, in, drawState);
 
-        drawBoard.annouceFinished();
+        drawBoard.announceFinished("");
 
         verify(printStream).println("Game is draw");
+    }
+
+    @Test
+    public void shouldDetectWhenRowHasBeenWon() {
+        ArrayList<String> horizontalWinState = new ArrayList<>(Arrays.asList("X","X","X","O","O","X","X","O","O"));
+        Board horizontalWinBoard = new Board(printStream, in, horizontalWinState);
+
+        boolean isWon = horizontalWinBoard.isWon();
+
+        assertThat(isWon, is(true));
+    }
+
+    @Test
+    public void shouldDisplayWhoWonTheGame() {
+        ArrayList<String> horizontalWinState = new ArrayList<>(Arrays.asList("X","X","X","O","O","X","X","O","O"));
+        Board horizontalWinBoard = new Board(printStream, in, horizontalWinState);
+
+        horizontalWinBoard.announceFinished("X");
+
+        verify(printStream).println("Player <X> Wins!");
+
     }
 }
